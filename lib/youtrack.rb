@@ -1,5 +1,6 @@
-require "youtrack/version"
+require "httparty"
 
 module Youtrack
-  # Your code goes here...
+  autoload :Client, "youtrack/client"
+  autoload :VERSION, "youtrack/version"
 end

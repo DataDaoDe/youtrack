@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ```ruby
 
-client = YouTrack::Client.new do |c|
+client = Youtrack::Client.new do |c|
   c.url = "https://example.com"
   c.login = "root"
   c.password = "root"

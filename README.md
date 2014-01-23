@@ -32,6 +32,7 @@ end
 
 Any issues or bugs should be well documented submit as many details as possible.
 The best issues have the following characteristics:
+
 1. Detail description with a title that conveys the problem well.
 2. Gists and/or failing tests that show under what conditions the problem occurs.
 3. Environment information, platform, gem version, etc.

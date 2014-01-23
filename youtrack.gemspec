@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Youtrack::VERSION
   spec.authors       = ["John Faucett"]
   spec.email         = ["jwaterfaucett@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{JetBrains youTrack Rest API Client in Ruby}
+  spec.summary       = %q{A Ruby REST API Client for JetBrains youTrack software}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -18,6 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  # DEVELOPMENT
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "cucumber", "~> 1.3.10"
+  spec.add_development_dependency "rspec", "~> 2.14.1"
 end

@@ -2,6 +2,8 @@
 
 youTrack REST API Client
 
+[![Build Status](https://travis-ci.org/jwaterfaucett/youtrack.png)](https://travis-ci.org/jwaterfaucett/youtrack)
+
 ## Installation
 
 Add this line to your application's Gemfile:

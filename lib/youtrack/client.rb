@@ -36,7 +36,7 @@ module Youtrack
 
     # Makes a login call and sets the Cookie headers
     def connect!
-      @response = self.class.post(endpoint + "/login", body: credentials_hash )
+      @response = self.class.post(endpoint + "/login", body: credentials_hash, headers: { 'Accepts' => 'application/xml' })
       puts @response.inspect
       @cookies['Set-Cookie'] = @response['Set-Cookie']
     end

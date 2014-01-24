@@ -35,11 +35,30 @@ module Youtrack
 
 
     # Makes a login call and sets the Cookie headers
+    # 
+    # Returns the status code of the connection call
     def connect!
-      @response = self.class.post(endpoint + "/login", body: credentials_hash, headers: { 'Accepts' => 'application/xml' })
-      puts @response.inspect
-      @cookies['Set-Cookie'] = @response['Set-Cookie']
+      @response = self.class.post(endpoint + "/user/login", body: credentials_hash )
+      @cookies['Cookie'] = @response.headers['set-cookie']
+      @response.code
     end
 
+    def users
+      resource(:user).new()
+    end
+
+    def projects
+      resource(:project)
+    end
+
+    def issues
+      resource(:issue)
+    end
+
+    private
+
+      def resource(resource_name)
+        Youtrack.const_get(resource_name.to_s.capitalize)
+      end
   end
 end

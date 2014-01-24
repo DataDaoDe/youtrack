@@ -24,9 +24,7 @@ module Youtrack
 
     def admin?
       true == @admin
-    end    
-
-    # stores the scope of the api calls
+    end
 
     def initialize(options={})
       @cookies = {}
@@ -35,7 +33,7 @@ module Youtrack
 
     # the server endpoint
     def endpoint
-      @endpoint = File.join(url, admin? ? "rest/admin" : 'rest')
+      @endpoint = File.join(url, 'rest')
     end
 
     def credentials_hash

@@ -12,9 +12,9 @@ module Youtrack
     attr_accessor :response
 
 
-    def initialize(client, resource_name)
+    def initialize(client)
       @service = client
-      @base_url = join(@service.endpoint, resource_name)
+      @base_url = @service.endpoint
     end
 
     protected

@@ -1,9 +1,5 @@
 module Youtrack
   class User < Base
-    
-    def initialize(client)
-      super(client, 'user')
-    end
 
 
     # USER Methods

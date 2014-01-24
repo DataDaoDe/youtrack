@@ -1,6 +1,5 @@
 module Youtrack
   class Client
-    include HTTParty
 
     # holds the youTrack Server url
     # defaults to nil
@@ -15,18 +14,28 @@ module Youtrack
     attr_accessor :password
 
     # stores the response object
-    attr_accessor :response
+    attr_accessor :connection
 
     # stores the auth_headers
     attr_accessor :cookies
 
+    # stores the scope of all subsequent api calls
+    attr_accessor :admin
+
+    def admin?
+      true == @admin
+    end    
+
+    # stores the scope of the api calls
+
     def initialize(options={})
       @cookies = {}
+      @admin   = false
     end
 
     # the server endpoint
     def endpoint
-      @endpoint ||= File.join(url, "rest")
+      @endpoint = File.join(url, admin? ? "rest/admin" : 'rest')
     end
 
     def credentials_hash
@@ -38,21 +47,25 @@ module Youtrack
     # 
     # Returns the status code of the connection call
     def connect!
-      @response = self.class.post(endpoint + "/user/login", body: credentials_hash )
-      @cookies['Cookie'] = @response.headers['set-cookie']
-      @response.code
+      @connection = HTTParty.post(File.join(url, "rest/user/login"), body: credentials_hash )
+      @cookies['Cookie'] = @connection.headers['set-cookie']
+      @connection.code
+    end
+
+    def connected?
+      !!(connection && connection.headers['set-cookie'])
     end
 
     def users
-      resource(:user).new()
+      resource(:user).new(self)
     end
 
     def projects
-      resource(:project)
+      resource(:project).new(self)
     end
 
     def issues
-      resource(:issue)
+      resource(:issue).new(self)
     end
 
     private

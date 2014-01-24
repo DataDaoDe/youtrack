@@ -1,10 +1,18 @@
 module Youtrack
   class User < Base
     
-    def initialize(service)
-      endpoint= service
-      base_url= 'user'
+    def initialize(client)
+      super(client, 'user')
     end
+
+
+    # USER Methods
+    def current
+      get('current')
+      response.parsed_response
+    end
+
+    # ADMIN Methods
 
   end
 end

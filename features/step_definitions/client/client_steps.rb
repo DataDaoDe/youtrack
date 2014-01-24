@@ -1,3 +1,10 @@
+def login_stub
+  stub_request(:post, YServer::Endpoint + "/login").with( body: @client.credentials_hash )
+end
+
+def fixture(filename)
+  File.join(YServer::FIXTURE_PATH, filename)
+end
 
 Given /^I create a new Client$/ do
   @client = Youtrack::Client.new
@@ -8,12 +15,23 @@ Given /^I enter the correct login credentials$/ do
   step "I set the Client#password= to <#{YServer::Password}>"
 end
 
+Given /^I enter incorrect login credentials$/ do
+  step "I set the Client#login= to <#{YServer::Lorem}>"
+  step "I set the Client#password= to <#{YServer::Lorem}>"
+end
+
 Given /^I set the Client url to point to the Server$/ do
   @client.url = YServer::URL
 end
 
-Given /^I connect$/ do
-  @client.login!
+Given /^I connect ok$/ do
+  login_stub.to_return( body: fixture('login_body_ok.xml'), headers: { 'Content-Type' => 'application/xml; charset=UTF-8' } )
+  @client.connect!
+end
+
+Given /^I connect with error$/ do
+  login_stub.to_return( body: fixture('login_body_error.xml'), headers: { 'Content-Type' => 'application/xml; charset=UTF-8' } )
+  @client.connect!
 end
 
 Given /^I set the Client#([a-zA-Z_=]+) to <([a-zA-Z0-9_-]+)>$/ do |method, value|
@@ -22,4 +40,11 @@ end
 
 Then /^I should be connected to the Server$/ do
   @client.response.parsed_response["login"].should eq("ok")
+end
+
+Then /^I should receive an error response from the Server$/ do
+end
+
+Then(/^I should receive an error Response$/) do
+  @client.response.parsed_response['error'].should eq('Incorrect login or password.')
 end

@@ -8,5 +8,12 @@ Feature: New Client Session
     Given I create a new Client
     When I set the Client url to point to the Server
       And I enter the correct login credentials
-      And I connect
+      And I connect ok
     Then I should be connected to the Server
+
+  Scenario: failing to start a new session
+    Given I create a new Client
+    When I set the Client url to point to the Server
+      And I enter incorrect login credentials
+      And I connect with error
+    Then I should receive an error Response

@@ -17,19 +17,28 @@ module Youtrack
     # stores the response object
     attr_accessor :response
 
+    # stores the auth_headers
+    attr_accessor :cookies
+
     def initialize(options={})
+      @cookies = {}
     end
 
-    def server_endpoint
-      @server_endpoint ||= File.join(url, "rest")
+    # the server endpoint
+    def endpoint
+      @endpoint ||= File.join(url, "rest")
     end
 
     def credentials_hash
       { login: login, password: password }
     end
 
-    def login!
-      @response = self.class.post(server_endpoint + "/login", { query: credentials_hash })
+
+    # Makes a login call and sets the Cookie headers
+    def connect!
+      @response = self.class.post(endpoint + "/login", body: credentials_hash )
+      puts @response.inspect
+      @cookies['Set-Cookie'] = @response['Set-Cookie']
     end
 
   end

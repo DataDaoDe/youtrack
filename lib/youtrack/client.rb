@@ -53,7 +53,7 @@ module Youtrack
     end
 
     def connected?
-      !!(connection && connection.headers['set-cookie'])
+      !!(connection && connection.headers['set-cookie'] && connection.code == 200)
     end
 
     def users

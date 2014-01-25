@@ -4,7 +4,7 @@ def fixture(filename)
 end
 
 Given /^I create a new Client$/ do
-  @client = Youtrack::Client.new
+  @client.is_a?(Youtrack::Client).should eq(true)
 end
 
 Given /^I enter the correct login credentials$/ do
@@ -34,12 +34,13 @@ Given /^I set the Client#([a-zA-Z_=]+) to <([a-zA-Z0-9_-]+)>$/ do |method, value
 end
 
 Then /^I should be connected to the Server$/ do
-  @client.response.parsed_response["login"].should eq("ok")
+  @client.connected?.should eq(true)
 end
 
 Then /^I should receive an error response from the Server$/ do
+  @client.connected?.should eq(false)
 end
 
 Then(/^I should receive an error Response$/) do
-  @client.response.parsed_response['error'].should eq('Incorrect login or password.')
+  @client.connected?.should eq(false)
 end

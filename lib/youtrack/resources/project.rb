@@ -5,7 +5,17 @@ module Youtrack
     # USER Methods
     # ==================
     def accessible_projects
-      get('/project/all')
+      get('project/all')
+      response.parsed_response
+    end
+
+    # filter        string    Apply a filter to issues in a project.
+    # after         Integer   A number of issues to skip before getting a list of issues. That is, when you specify, for example, after=12 in request, 
+    #                         then in the response you will get all issues matching request but without first twelve issues found .
+    # max           Integer   Maximum number of issues to be imported. If not provided, 10 issues will be imported, by default.
+    # updatedAfter  Long      Filter issues by the date of the most recent update. Only issues imported after the specified date will be gotten.
+    def get_issues_for(project_id, options={})
+      get("issue/byproject/#{project_id}")
       response.parsed_response
     end
 
@@ -13,12 +23,12 @@ module Youtrack
     # ADMIN Methods
     # ==================
     def all
-      get('/admin/project')
+      get('admin/project')
       response.parsed_response
     end
 
     def find(project_id)
-      get("/admin/project/#{project_id}")
+      get("admin/project/#{project_id}")
       response.parsed_response
     end
 
@@ -35,7 +45,7 @@ module Youtrack
     end
 
     def destroy(project_id)
-      delete("/admin/project/#{project_id}")
+      delete("admin/project/#{project_id}")
       response
     end
     

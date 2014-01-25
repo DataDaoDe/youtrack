@@ -77,6 +77,12 @@ module Youtrack
       response = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
       response
     end
+
+
+    def add_comment(issue_id, attributes={})
+      post("issue/#{issue_id}/execute", body: attributes)
+      response
+    end
     
   end
 end

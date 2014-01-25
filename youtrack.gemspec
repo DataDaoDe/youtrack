@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["jwaterfaucett@gmail.com"]
   spec.description   = %q{JetBrains youTrack Rest API Client in Ruby}
   spec.summary       = %q{A Ruby REST API Client for JetBrains youTrack software}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.homepage      = "http://jwaterfaucett.github.io/youtrack/"
+  spec.license       = "GPLv3"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

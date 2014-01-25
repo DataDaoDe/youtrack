@@ -26,9 +26,11 @@ module Youtrack
       true == @admin
     end
 
-    def initialize(options={})
+    def initialize(options={}, &block)
       @cookies = {}
       @admin   = false
+
+      yield(self) if block_given?
     end
 
     # the server endpoint

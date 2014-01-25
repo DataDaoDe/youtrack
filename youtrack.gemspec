@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   # HARD DEPENDENCY
   spec.add_dependency "httparty", "~> 0.12.0"
+  spec.add_dependency "multipart-post", "~> 2.0.0"
 
   # DEVELOPMENT
   spec.add_development_dependency "bundler", "~> 1.3"

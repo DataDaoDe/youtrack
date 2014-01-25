@@ -1,3 +1,5 @@
+require 'net/http/post/multipart'
+
 module Youtrack
   class Issue < Base
 
@@ -68,15 +70,11 @@ module Youtrack
       response
     end
 
-    def add_attachment(issue_id, file_path, file_type)
-
-      post("issue/#{issue_id}", multipart: {
-        "file": {
-          path: file_path,
-          type: file_type
-        }
-      })
-      
+    def add_attachment(issue_id, data, content_type, filename)
+      url = URI.parse(join(base_url, "issue/#{issue_id}/attachment"))
+      req = Net::HTTP::Post::Multipart.new( url.path, "file" => UploadIO.new(data, content_type, filename))
+      req['Cookie'] = service.cookies['Cookie']
+      response = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
       response
     end
     

@@ -1,6 +1,3 @@
-def login_stub
-  stub_request(:post, YServer::Endpoint + "/login").with( body: @client.credentials_hash )
-end
 
 def fixture(filename)
   File.join(YServer::FIXTURE_PATH, filename)
@@ -25,12 +22,10 @@ Given /^I set the Client url to point to the Server$/ do
 end
 
 Given /^I connect ok$/ do
-  login_stub.to_return( body: fixture('login_body_ok.xml'), headers: { 'Content-Type' => 'application/xml; charset=UTF-8' } )
   @client.connect!
 end
 
 Given /^I connect with error$/ do
-  login_stub.to_return( body: fixture('login_body_error.xml'), headers: { 'Content-Type' => 'application/xml; charset=UTF-8' } )
   @client.connect!
 end
 

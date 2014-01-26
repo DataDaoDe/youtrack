@@ -4,7 +4,7 @@ module Youtrack
     # ==================
     # USER Methods
     # ==================
-    def accessible_projects
+    def get_accessible_projects
       get('project/all')
       response.parsed_response
     end

@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://testcloud.myjetbrains.com/youtrack/rest/user/login
+    body:
+      encoding: UTF-8
+      string: login=testuser&password=testuser
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 07 Feb 2014 22:42:20 GMT
+      Content-Type:
+      - application/xml; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - JSESSIONID=xt1ovx8ac8acjld0v70wx33o;Path=/youtrack;Secure
+      - jetbrains.charisma.main.security.PRINCIPAL=YWU1ZGViODIyZTBkNzE5OTI5MDA0NzFhNzE5OWQwZDk1YjhlN2M5ZDA1YzQwYTgyNDVhMjgxZmQyYzFkNjY4NDp0ZXN0dXNlcg;Path=/youtrack;Expires=Sat,
+        07-Feb-2015 22:42:20 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache, no-store, no-transform, must-revalidate
+    body:
+      encoding: UTF-8
+      string: <login>ok</login>
+    http_version: 
+  recorded_at: Fri, 07 Feb 2014 22:44:07 GMT
+- request:
+    method: get
+    uri: https://testcloud.myjetbrains.com/youtrack/rest/user/testuser
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - JSESSIONID=xt1ovx8ac8acjld0v70wx33o;Path=/youtrack;Secure, jetbrains.charisma.main.security.PRINCIPAL=YWU1ZGViODIyZTBkNzE5OTI5MDA0NzFhNzE5OWQwZDk1YjhlN2M5ZDA1YzQwYTgyNDVhMjgxZmQyYzFkNjY4NDp0ZXN0dXNlcg;Path=/youtrack;Expires=Sat,
+        07-Feb-2015 22:42:20 GMT
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 07 Feb 2014 22:42:21 GMT
+      Content-Type:
+      - application/xml; charset=UTF-8
+      Content-Length:
+      - '130'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, no-transform, must-revalidate
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><user login="testuser"
+        email="testuser@testcloud.de" fullName="Test User"/>
+    http_version: 
+  recorded_at: Fri, 07 Feb 2014 22:44:08 GMT
+recorded_with: VCR 2.8.0

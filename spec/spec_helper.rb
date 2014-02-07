@@ -7,11 +7,21 @@
 
 require "webmock/rspec"
 require "youtrack"
+require "vcr"
+
+VCR.configure do |c|
+  c.cassette_library_dir = "spec/cassettes"
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
+end
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
+
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.extend VCR::RSpec::Macros
 
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
@@ -19,3 +29,12 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
+
+def build_client(proto="http", user, pass)
+  Youtrack::Client.new do |c|
+    c.url = "#{proto}://testcloud.myjetbrains.com/youtrack"
+    c.login = user
+    c.password = pass
+  end
+end
+  

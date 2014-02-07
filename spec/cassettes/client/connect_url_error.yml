@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://testcloud.myjetbrains.com/youtracks/rest/user/login
+    body:
+      encoding: UTF-8
+      string: login=testuser&password=testuser
+    headers: {}
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 07 Feb 2014 21:59:42 GMT
+      Content-Type:
+      - text/html;charset=ISO-8859-1
+      Content-Length:
+      - '1292'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - must-revalidate,no-cache,no-store
+    body:
+      encoding: UTF-8
+      string: "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html;charset=ISO-8859-1\"/>\n<title>Error
+        404 Not Found</title>\n</head>\n<body>\n<h2>HTTP ERROR: 404</h2>\n<p>Problem
+        accessing /youtracks/rest/user/login. Reason:\n<pre>    Not Found</pre></p>\n<hr
+        /><i><small>Powered by Jetty://</small></i>\n                                                \n
+        \                                               \n                                                \n
+        \                                               \n                                                \n
+        \                                               \n                                                \n
+        \                                               \n                                                \n
+        \                                               \n                                                \n
+        \                                               \n                                                \n
+        \                                               \n                                                \n
+        \                                               \n                                                \n
+        \                                               \n                                                \n
+        \                                               \n</body>\n</html>\n"
+    http_version: 
+  recorded_at: Fri, 07 Feb 2014 22:01:29 GMT
+recorded_with: VCR 2.8.0

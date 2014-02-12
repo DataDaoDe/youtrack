@@ -7,4 +7,5 @@ module Youtrack
   autoload :Issue,    "youtrack/resources/issue"
   autoload :Project,  "youtrack/resources/project"
   autoload :User,     "youtrack/resources/user"
+  autoload :Tag,      "youtrack/resources/tag"
 end

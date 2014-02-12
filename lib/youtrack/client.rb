@@ -68,6 +68,10 @@ module Youtrack
       resource(:issue).new(self)
     end
 
+    def tags
+      resource(:tag).new(self)
+    end
+
     private
 
       def resource(resource_name)

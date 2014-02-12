@@ -3,6 +3,7 @@
 youTrack REST API Client
 
 [![Build Status](https://travis-ci.org/jwaterfaucett/youtrack.png)](https://travis-ci.org/jwaterfaucett/youtrack)
+[![Gem Version](https://badge.fury.io/rb/youtrack.png)](http://badge.fury.io/rb/youtrack)
 
 ## Installation
 

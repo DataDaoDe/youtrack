@@ -15,7 +15,7 @@ module Youtrack
     def initialize(client)
       @service = client
       @base_url = @service.endpoint
-      self.class.debug_output($stdout) if client.debug
+      self.class.debug_output($stderr) if client.debug
     end
 
     protected

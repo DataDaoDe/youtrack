@@ -15,8 +15,14 @@ module Youtrack
     # description  string  Description for the new issue.
     # attachments  file in "multipart/form-data" format  One or several files in "multipart/form-data" format that should be attached to the new issue.
     # permittedGroup   string  Set visibility for the new issue, that is: Specify a user group to which the issue will be visible.
+    #
+    # Hack: the body has to be set to empty so that HTTParty sends a Content-Length header, which Youtrack requires
+    #
+    # API-Success: Returns a 201 created wit hthe location header set
+    #
+    # Returns the response object
     def create(attributes={})
-      put("issue", query: attributes)
+      put("issue", query: attributes, body: {})
       response
     end
 

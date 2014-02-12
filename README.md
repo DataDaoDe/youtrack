@@ -27,9 +27,20 @@ client = Youtrack::Client.new do |c|
   c.url = "https://example.com"
   c.login = "root"
   c.password = "root"
+
+  # Hook into the Net::HTTP set_debug_output method for debugging HTTP Request/Response Cycles
+  c.debug = true
 end
 
+# Now connect to the server
+# It sets the Cookies and returns the Connection response status code
+client.connect!
+
 ```
+
+## Examples
+
+To get a feel for the API browse the [examples directory](https://github.com/jwaterfaucett/youtrack/tree/master/examples).
 
 ## Issues
 

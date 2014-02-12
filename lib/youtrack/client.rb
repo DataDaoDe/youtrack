@@ -26,9 +26,13 @@ module Youtrack
       true == @admin
     end
 
+    # Sets debugging mode
+    attr_accessor :debug
+
     def initialize(options={}, &block)
-      @cookies = {}
-      @admin   = false
+      @cookies  = {}
+      @admin    = false
+      @debug    = false
 
       yield(self) if block_given?
     end

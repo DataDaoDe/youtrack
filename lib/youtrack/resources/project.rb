@@ -40,7 +40,7 @@ module Youtrack
     # projectLeadLogin   string required Login name of a user to be assigned as a project leader.
     # description  string  Optional description of the new project
     def create(attributes={})
-      put("admin/project/#{attributes[:projectId]}", body: attributes)
+      put("admin/project/#{attributes[:projectId]}", query: attributes)
       response
     end
 

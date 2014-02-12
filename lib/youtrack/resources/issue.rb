@@ -16,7 +16,7 @@ module Youtrack
     # attachments  file in "multipart/form-data" format  One or several files in "multipart/form-data" format that should be attached to the new issue.
     # permittedGroup   string  Set visibility for the new issue, that is: Specify a user group to which the issue will be visible.
     def create(attributes={})
-      put("issue", body: attributes)
+      put("issue", query: attributes)
       response
     end
 
@@ -61,7 +61,7 @@ module Youtrack
     # summary  string  New summary for the specified issue.
     # description  string  Updated description for the specified issue.
     def update(issue_id, attributes={})
-      post("issue/#{issue_id}", body: attributes)
+      post("issue/#{issue_id}", query: attributes)
       response.parsed_response
     end
 
@@ -74,13 +74,21 @@ module Youtrack
       url = URI.parse(join(base_url, "issue/#{issue_id}/attachment"))
       req = Net::HTTP::Post::Multipart.new( url.path, "file" => UploadIO.new(data, content_type, filename))
       req['Cookie'] = service.cookies['Cookie']
-      response = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+      http = Net::HTTP.new(url.host, url.port)
+      http.set_debug_output($stderr) if service.debug
+      
+      if url.scheme == 'https'
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+      end
+
+      response = http.request(req)
       response
     end
 
 
     def add_comment(issue_id, attributes={})
-      post("issue/#{issue_id}/execute", body: attributes)
+      post("issue/#{issue_id}/execute", query: attributes)
       response
     end
     

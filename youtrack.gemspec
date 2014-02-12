@@ -4,6 +4,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'youtrack/version'
 
 Gem::Specification.new do |spec|
+
+  # META
   spec.name          = "youtrack"
   spec.version       = Youtrack::VERSION
   spec.authors       = ["John Faucett"]
@@ -13,7 +15,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://jwaterfaucett.github.io/youtrack/"
   spec.license       = "GPLv3"
 
-  spec.files         = `git ls-files`.split($/)
+  # FILES
+  spec.files         = `git ls-files`.split($/).grep(%r{^(?!binstubs|examples)})
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]

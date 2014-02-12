@@ -33,7 +33,10 @@ issue_resource.get_links_for("TT-6")
 issue_resource.create(
   project: "TT",
   summary: "An example Bug",
-  description: "This Bug is evil"
+  description: "This Bug is evil",
+  type: 'bug',
+  priority: 'critical',
+  state: 'open'
 )
 
 # Update an Issue

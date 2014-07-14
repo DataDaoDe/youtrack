@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{JetBrains youTrack Rest API Client in Ruby}
   spec.summary       = %q{A Ruby REST API Client for JetBrains youTrack software}
   spec.homepage      = "http://jwaterfaucett.github.io/youtrack/"
-  spec.license       = "GPLv3"
+  spec.license       = "MIT"
 
   # FILES
   spec.files         = `git ls-files`.split($/).grep(%r{^(?!binstubs|examples)})

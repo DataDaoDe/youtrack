@@ -1,4 +1,5 @@
 require 'net/http/post/multipart'
+require 'uri'
 
 module Youtrack
   class Issue < Base
@@ -28,6 +29,11 @@ module Youtrack
 
     def find(issue_id)
       get("issue/#{issue_id}")
+      response.parsed_response
+    end
+
+    def count(filter)
+      get("issue/count?filter=#{URI.encode(filter)}")
       response.parsed_response
     end
 

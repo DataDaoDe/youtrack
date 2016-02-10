@@ -15,7 +15,7 @@ module Youtrack
     # max           Integer   Maximum number of issues to be imported. If not provided, 10 issues will be imported, by default.
     # updatedAfter  Long      Filter issues by the date of the most recent update. Only issues imported after the specified date will be gotten.
     def get_issues_for(project_id, options={})
-      get("issue/byproject/#{project_id}")
+      get("issue/byproject/#{project_id}", options)
       response.parsed_response
     end
 
